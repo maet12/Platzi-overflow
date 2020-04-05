@@ -79,6 +79,20 @@ module.exports = [
         handler: question.createQuestions
     },
     {
+        method: 'POST',
+        path: '/answer-question',
+        options: {
+            validate: {
+                payload: {
+                    answer: joi.string().required(),
+                    id: joi.string().required(),
+                },
+                failAction: user.failValidation
+            }
+        },
+        handler: question.answerQuestion
+    },
+    {
         method: 'GET',
         path: '/assets/{param*}',
         handler: {
@@ -89,7 +103,7 @@ module.exports = [
         }
     },
     {
-        method: ['GET','POST'],
+        method: ['GET', 'POST'],
         path: '/{any*}',
         handler: site.notFound
     }
