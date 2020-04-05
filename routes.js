@@ -32,7 +32,8 @@ module.exports = [
                     name: joi.string().required().min(3),
                     email: joi.string().email().required(),
                     password: joi.string().required().min(6)
-                }
+                },
+                failAction: user.failValidation
             }
         },
         path: '/create-user',
@@ -46,7 +47,8 @@ module.exports = [
                 payload: {
                     email: joi.string().email().required(),
                     password: joi.string().required().min(6)
-                }
+                },
+                failAction: user.failValidation
             }
         },
         handler: user.validateUser

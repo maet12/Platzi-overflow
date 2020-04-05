@@ -49,4 +49,12 @@ async function init() {
 
 }
 
+process.on('unhandledRejection', error => {
+    console.error('unhandledRejection', error.message, error)
+})
+
+process.on('ununhandledException', error => {
+    console.error('ununhandledException', error.message, error)
+})
+
 init();

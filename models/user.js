@@ -1,6 +1,6 @@
 'user strict'
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 class Users {
     constructor(db) {
@@ -31,7 +31,7 @@ class Users {
             const result = (passwdRight) ? userFound[userId] : false;
             return result;
         }
-        
+
         return false;
     }
 
