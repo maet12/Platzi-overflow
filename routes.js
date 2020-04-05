@@ -15,18 +15,36 @@ module.exports = [
         handler: site.register
     },
     {
+        method: 'GET',
+        path: '/login',
+        handler: site.login
+    },
+    {
         method: 'POST',
-        options:{
-          validate: {
-              payload:{
-                  name: joi.string().required().min(3),
-                  email: joi.string().email().required(),
-                  password: joi.string().required().min(6)
-              }
-          }  
+        options: {
+            validate: {
+                payload: {
+                    name: joi.string().required().min(3),
+                    email: joi.string().email().required(),
+                    password: joi.string().required().min(6)
+                }
+            }
         },
         path: '/create-user',
         handler: user.createUser
+    },
+    {
+        path: '/validate-user',
+        method: 'POST',
+        options: {
+            validate: {
+                payload: {
+                    email: joi.string().email().required(),
+                    password: joi.string().required().min(6)
+                }
+            }
+        },
+        handler: user.validateUser
     },
     {
         method: 'GET',

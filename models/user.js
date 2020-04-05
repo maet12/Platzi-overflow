@@ -9,13 +9,30 @@ class Users {
         this.collection = this.ref.child('users')
     }
 
-    async create(data) {        
+    async create(data) {
         data.password = await this.constructor.encrypt(data.password);
         const user = {
             ...data
         }
         const newUser = this.collection.push(user);
         return newUser.key;
+    }
+
+    async validateUser(data) {
+        const user = {
+            ...data
+        }
+
+        const userQuery = await this.collection.orderByChild('email').equalTo(user.email).once('value');
+        const userFound = userQuery.val();
+        if (userFound) {
+            const userId = Object.keys(userFound)[0];
+            const passwdRight = await bcrypt.compare(data.password, userFound[userId].password);
+            const result = (passwdRight) ? userFound[userId] : false;
+            return result;
+        }
+        
+        return false;
     }
 
     static async encrypt(passwd) {
