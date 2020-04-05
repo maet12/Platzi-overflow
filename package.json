@@ -1,0 +1,19 @@
+{
+  "name": "platzi-overflow",
+  "version": "1.0.0",
+  "description": "Un sitio como StackOverflow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maet12/Platzi-overflow.git"
+  },
+  "author": "Marco Elizalde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maet12/Platzi-overflow/issues"
+  },
+  "homepage": "https://github.com/maet12/Platzi-overflow#readme"
+}
