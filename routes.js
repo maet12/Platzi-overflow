@@ -31,6 +31,11 @@ module.exports = [
         handler: site.ask
     },
     {
+        method: 'GET',
+        path: '/question/{id}',
+        handler: site.viewQuestion
+    },
+    {
         method: 'POST',
         options: {
             validate: {

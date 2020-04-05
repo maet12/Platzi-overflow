@@ -49,6 +49,25 @@ function ask(req, h) {
     return h.view('ask', { title: 'Nueva pregunta', user: req.state.user })
 }
 
+async function viewQuestion(req, h){
+    let data;
+    try {
+        data = await questions.getOne(req.params.id)
+        if(!data){
+            return notFound(req, h);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+    return h.view('question',{
+        title: 'Detalles de la pregunta',
+        user: req.state.user,
+        question: data,
+        key: req.params.id
+    })
+}
+
 module.exports = {
-    home, register, login, notFound, fileNotFound, ask
+    home, register, login, notFound, fileNotFound, ask, viewQuestion
 }
