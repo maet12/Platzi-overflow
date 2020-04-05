@@ -19,9 +19,18 @@ function login(req, h) {
 }
 
 function notFound(req, h) {
-    return h.view('404', {}, {layout:'error-layout'}).code(404);
+    return h.view('404', {}, { layout: 'error-layout' }).code(404);
+}
+
+function fileNotFound(req, h) {
+    const respose = req.response;
+    if (respose.isBoom && respose.output.statusCode === 404) {
+        return h.view('404', {}, { layout: 'error-layout' }).code(404);
+    }
+
+    return h.continue;
 }
 
 module.exports = {
-    home, register, login, notFound
+    home, register, login, notFound, fileNotFound
 }

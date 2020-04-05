@@ -51,7 +51,15 @@ function logout(req, h) {
 }
 
 function failValidation(req, h, erro) {
-    boom.badRequest('Fallo la validación', req.payload)
+    const templates = {
+        '/create-user':'register',
+        '/validate-user':'login'
+    }
+
+    return h.view(templates[req.path],{
+        title: 'Error de validación',
+        error: 'Por favor complete los campos requerdios'
+    }).code(400).takeover();
 }
 
 module.exports = {
