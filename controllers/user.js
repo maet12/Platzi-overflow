@@ -52,11 +52,12 @@ function logout(req, h) {
 
 function failValidation(req, h, erro) {
     const templates = {
-        '/create-user':'register',
-        '/validate-user':'login'
+        '/create-user': 'register',
+        '/validate-user': 'login',
+        '/create-question': 'ask'
     }
 
-    return h.view(templates[req.path],{
+    return h.view(templates[req.path], {
         title: 'Error de validación',
         error: 'Por favor complete los campos requerdios'
     }).code(400).takeover();

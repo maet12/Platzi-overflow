@@ -31,6 +31,14 @@ function fileNotFound(req, h) {
     return h.continue;
 }
 
+function ask(req, h) {
+    if (!req.state.user) {
+        return h.redirect('/')
+    }
+
+    return h.view('ask', { title: 'Nueva pregunta', user: req.state.user })
+}
+
 module.exports = {
-    home, register, login, notFound, fileNotFound
+    home, register, login, notFound, fileNotFound, ask
 }
