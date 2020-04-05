@@ -104,3 +104,10 @@ dist/
 tmp/
 temp/
 
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
+config/
