@@ -1,7 +1,7 @@
 'use strict'
 
 class Questions {
-    constructor (db){
+    constructor(db) {
         this.db = db;
         this.ref = this.db.ref('/');
         this.collection = this.ref.child('questions');
@@ -15,6 +15,13 @@ class Questions {
 
         const questionNew = this.collection.push(question);
         return questionNew.key;
+    }
+
+    async getLast(amount) {
+        const query = await this.collection.limitToLast(amount).once('value');
+        const data = query.val();
+
+        return data;
     }
 }
 
