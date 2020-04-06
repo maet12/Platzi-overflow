@@ -1,6 +1,8 @@
 'use strict'
 
 const hapi = require('hapi');
+const blankie = require('blankie')
+const scooter = require('@hapi/scooter')
 const handlerbasr = require('./lib/helpers')
 const vision = require('vision')
 const inert = require('inert');
@@ -10,6 +12,7 @@ const site = require('./controllers/site')
 const methods = require('./lib/methods');
 const good = require('good');
 const crumb = require('crumb')
+const hapiDevErrors = require('hapi-dev-errors');
 
 const server = hapi.server({
     port: process.env.PORT || 3000,
@@ -40,16 +43,23 @@ async function init() {
         })
 
         await server.register({
+            plugin: hapiDevErrors,
+            options: {
+                showErrors: process.env.NODE_ENV === 'prod'
+            }
+        })
+
+        await server.register({
             plugin: crumb,
-            options:{
-                cookieOptions:{
+            options: {
+                cookieOptions: {
                     isSecure: process.env.NODE_ENV === 'prod'
                 }
             }
         })
         await server.register({
             plugin: require('./lib/api'),
-            options:{
+            options: {
                 prefix: 'api'
             }
         })
