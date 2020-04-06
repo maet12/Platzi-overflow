@@ -1,8 +1,6 @@
 'use strict'
 
 const hapi = require('hapi');
-const blankie = require('blankie')
-const scooter = require('@hapi/scooter')
 const handlerbasr = require('./lib/helpers')
 const vision = require('vision')
 const inert = require('inert');
@@ -10,7 +8,6 @@ const routes = require('./routes')
 const path = require('path')
 const site = require('./controllers/site')
 const methods = require('./lib/methods');
-const good = require('good');
 const crumb = require('crumb')
 const hapiDevErrors = require('hapi-dev-errors');
 
@@ -29,18 +26,7 @@ async function init() {
     try {
         await server.register(inert);
         await server.register(vision);
-        await server.register({
-            plugin: good,
-            options: {
-                reporters: {
-                    console: [{
-                        module: 'good-console'
-                    },
-                        'stdout'
-                    ]
-                }
-            }
-        })
+    
 
         await server.register({
             plugin: hapiDevErrors,

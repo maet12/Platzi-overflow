@@ -5,13 +5,16 @@
     "builds": [
         {
             "src": "index.js",
-            "use": "@now/node"
+            "use": "@now/node-server"
         }
     ],
     "routes": [
         {
-            "src": "/",
-            "dest": "index.js"
+            "src": "^/(.*)",
+            "dest": "/index.js",
+            "methods": [
+                "GET", "POST"
+            ]
         }
     ]
 }

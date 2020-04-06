@@ -3,8 +3,6 @@ const questions = require('../models/index').question;
 
 async function home(req, h) {
     const data = await req.server.methods.getLast(10);
- 
-    
     return h.view('index', { title: 'Home', user: req.state.user, questions: data })
 }
 
