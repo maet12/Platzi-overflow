@@ -28,7 +28,7 @@ function notFound(req, h) {
 
 function fileNotFound(req, h) {
     const respose = req.response;
-    if (respose.isBoom && respose.output.statusCode === 404) {
+    if (!req.path.startsWith('/api') &&  respose.isBoom && respose.output.statusCode === 404) {
         return h.view('404', {}, { layout: 'error-layout' }).code(404);
     }
 
