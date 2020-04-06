@@ -78,6 +78,7 @@ module.exports = [
                 payload: {
                     title: joi.string().required(),
                     description: joi.string().required(),
+                    image: joi.any().optional()
                 },
                 failAction: user.failValidation
             }

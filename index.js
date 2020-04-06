@@ -8,6 +8,7 @@ const routes = require('./routes')
 const path = require('path')
 const site = require('./controllers/site')
 const methods = require('./lib/methods');
+const good = require('good');
 
 const server = hapi.server({
     port: process.env.PORT || 3000,
@@ -24,11 +25,23 @@ async function init() {
     try {
         await server.register(inert);
         await server.register(vision);
+        await server.register({
+            plugin: good,
+            options: {
+                reporters: {
+                    console: [{
+                        module: 'good-console'
+                    },
+                        'stdout'
+                    ]
+                }
+            }
+        })
         server.method('setAnswerRight', methods.setAnswerRight);
-        server.method('getLast', methods.getLast,{
-            cache:{
+        server.method('getLast', methods.getLast, {
+            cache: {
                 expiresIn: 1000 * 60,
-                generateTimeout:2000
+                generateTimeout: 2000
             }
         });
 
@@ -50,21 +63,19 @@ async function init() {
         server.ext('onPreResponse', site.fileNotFound)
         server.route(routes)
         await server.start();
+        server.log('info', 'Servidor lanzado')
     } catch (error) {
         console.error(error)
         process(1);
     }
-
-    console.log(`Servidor lanzado en: ${server.info.uri}`);
-
 }
 
 process.on('unhandledRejection', error => {
-    console.error('unhandledRejection', error.message, error)
+    server.log('unhandledRejection', error)
 })
 
 process.on('ununhandledException', error => {
-    console.error('ununhandledException', error.message, error)
+    server.log('ununhandledException', error)
 })
 
 init();

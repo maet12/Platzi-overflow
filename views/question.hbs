@@ -2,6 +2,12 @@
     <div class="alert alert-primary" role="alert">
         <h4 class="alert-heading">{{question.title}}</h4>
         <p>{{question.description}}</p>
+        {{#with question.filename}}
+        <p class="text-center">
+            <img style="max-width:80%" src="/assets/uploads/{{this}}" />
+        </p>
+        <hr>
+        {{/with}}
         <p class="mb-0">Creada por <strong>{{question.owner.name}}</strong></p>
     </div>
 
@@ -16,14 +22,15 @@
                 </div>
                 <div class="col-sm text-right">
                     {{#with user}}
-                        {{#ifEquals ../../question.owner.email ../../user.email}}
-                            {{#unless  answer.correct}}
-                                <a href="/answer/{{../../../../key}}/{{key}}" class="btn btn-primary" role="button">Elegir respuesta correcta</a>
-                            {{/unless}}
-                        {{/ifEquals}}
+                    {{#ifEquals ../../question.owner.email ../../user.email}}
+                    {{#unless  answer.correct}}
+                    <a href="/answer/{{../../../../key}}/{{key}}" class="btn btn-primary" role="button">Elegir respuesta
+                        correcta</a>
+                    {{/unless}}
+                    {{/ifEquals}}
                     {{/with}}
                     {{#if answer.correct}}
-                        <h3><span class="badge badge-success">Respuesta correcta </span></h3>
+                    <h3><span class="badge badge-success">Respuesta correcta </span></h3>
                     {{/if}}
                 </div>
             </div>
