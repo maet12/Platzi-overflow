@@ -9,6 +9,7 @@ const path = require('path')
 const site = require('./controllers/site')
 const methods = require('./lib/methods');
 const good = require('good');
+const crumb = require('crumb')
 
 const server = hapi.server({
     port: process.env.PORT || 3000,
@@ -38,6 +39,14 @@ async function init() {
             }
         })
 
+        await server.register({
+            plugin: crumb,
+            options:{
+                cookieOptions:{
+                    isSecure: process.env.NODE_ENV === 'prod'
+                }
+            }
+        })
         await server.register({
             plugin: require('./lib/api'),
             options:{
