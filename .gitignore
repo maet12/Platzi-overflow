@@ -110,7 +110,5 @@ temp/
 .runtimeconfig.json
 .firebase/
 
-config/*
-
-
+config/
 .now
