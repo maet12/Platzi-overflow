@@ -34,6 +34,8 @@ You need to create a project in firebase to connect this project.
 npm run dev
 ```
 
+If you would like to know how structure this project, you can to access to [wiki](https://github.com/maet12/Platzi-overflow/wiki/Project-structure)
+
 ### Notes
 if you want run this project on developer mode, you need:
 
