@@ -1,16 +1,33 @@
 # Platzi-overflow
 
-Hapi course project, stackoverflow platform
+Hapi course project, stackoverflow platform, this project build with:
 
+- Node.JS 
+- Hapi
+- Firebase Realtime Database
+- [Handlebars](https://www.npmjs.com/package/handlebars)
+
+Other dependecies:
+
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [blankie](https://www.npmjs.com/package/blankie)
+- [scooter](https://www.npmjs.com/package/@hapi/scooter)
+- [boom](https://www.npmjs.com/package/@hapi/boom)
+- [crumb](https://www.npmjs.com/package/@hapi/crumb)
+- [joi](https://www.npmjs.com/package/@hapi/joi)
 
 ## Demo
 If you want to see the demo of this proyect deployed, you can visit [Platzi-overflow](https://platzi-overflow.now.sh/)
 
 ## Installation
-To install and run this proyect just type and execute
+To install this proyect just type and execute
+
 ```bash
 npm install
 ```
+
+You need to create a project in firebase to connect this project.
+
 ## Run
 
 ```bash
